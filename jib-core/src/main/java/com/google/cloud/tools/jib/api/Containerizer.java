@@ -155,6 +155,7 @@ public class Containerizer {
   @Nullable private Path applicationLayersCacheDirectory;
   private boolean allowInsecureRegistries = false;
   private boolean offline = false;
+  private boolean enablePlatformTags = false;
   private String toolName = DEFAULT_TOOL_NAME;
   @Nullable private String toolVersion = DEFAULT_TOOL_VERSION;
   private boolean alwaysCacheBaseImage = false;
@@ -190,6 +191,13 @@ public class Containerizer {
     return this;
   }
 
+  public boolean getEnablePlatformTags() {
+    return enablePlatformTags;
+  }
+  public Containerizer setEnablePlatformTags(boolean enable) {
+    this.enablePlatformTags = enable;
+    return this;
+  }
   /**
    * Sets the {@link ExecutorService} Jib executes on. Jib, by default, uses {@link
    * Executors#newCachedThreadPool}.
@@ -405,4 +413,5 @@ public class Containerizer {
   BuildResult run(BuildContext buildContext) throws ExecutionException, InterruptedException {
     return stepsRunnerFactory.apply(buildContext).run();
   }
+
 }

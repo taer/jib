@@ -303,6 +303,7 @@ public class PluginConfigurationProcessor {
             rawConfiguration.getProperty(PropertyNames.ALWAYS_CACHE_BASE_IMAGE).orElse("false"));
     Containerizer containerizer =
         Containerizer.to(targetImage).setAlwaysCacheBaseImage(alwaysCacheBaseImage);
+    containerizer.setEnablePlatformTags(rawConfiguration.getToEnablePlatformTags().orElse(false));
     Multimaps.asMap(globalConfig.getRegistryMirrors()).forEach(containerizer::addRegistryMirrors);
 
     JibContainerBuilder jibContainerBuilder =
@@ -436,6 +437,7 @@ public class PluginConfigurationProcessor {
         .setEntrypoint(computeEntrypoint(rawConfiguration, projectProperties, jibContainerBuilder))
         .setProgramArguments(rawConfiguration.getProgramArguments().orElse(null))
         .setEnvironment(rawConfiguration.getEnvironment())
+        .setEnablePlatformTag(rawConfiguration.getToEnablePlatformTags().orElse(false))
         .setExposedPorts(Ports.parse(rawConfiguration.getPorts()))
         .setVolumes(getVolumesSet(rawConfiguration))
         .setLabels(rawConfiguration.getLabels())

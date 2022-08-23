@@ -131,8 +131,8 @@ public class TargetImageParameters {
   @Nullable
   @Optional
   public Boolean isEnablePlatformTag() {
-    if (System.getProperty(PropertyNames.TO_ENABLETAG) != null) {
-      return Boolean.getBoolean(PropertyNames.TO_ENABLETAG);
+    if (System.getProperty(PropertyNames.TO_ENABLE_TAG) != null) {
+      return Boolean.getBoolean(PropertyNames.TO_ENABLE_TAG);
     }
     return enablePlatformTag.getOrNull();
   }

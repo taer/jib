@@ -57,6 +57,11 @@ public class GradleRawConfiguration implements RawConfiguration {
   }
 
   @Override
+  public Optional<Boolean> getToEnablePlatformTags() {
+    return Optional.ofNullable(jibExtension.getTo().isEnablePlatformTag());
+  }
+
+  @Override
   public AuthProperty getToAuth() {
     return jibExtension.getTo().getAuth();
   }

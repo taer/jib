@@ -67,6 +67,8 @@ public interface RawConfiguration {
 
   Optional<String> getToImage();
 
+  Optional<Boolean> getToEnablePlatformTags();
+
   AuthProperty getFromAuth();
 
   AuthProperty getToAuth();

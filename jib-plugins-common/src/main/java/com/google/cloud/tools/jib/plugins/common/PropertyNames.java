@@ -25,6 +25,7 @@ public class PropertyNames {
   public static final String FROM_AUTH_PASSWORD = "jib.from.auth.password";
   public static final String FROM_PLATFORMS = "jib.from.platforms";
   public static final String TO_IMAGE = "jib.to.image";
+  public static final String TO_ENABLE_TAG = "jib.to.enablePlatformTag";
   public static final String TO_IMAGE_ALTERNATE = "image";
   public static final String TO_TAGS = "jib.to.tags";
   public static final String TO_CRED_HELPER = "jib.to.credHelper";

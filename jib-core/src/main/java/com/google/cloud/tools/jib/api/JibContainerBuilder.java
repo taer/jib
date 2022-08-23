@@ -83,6 +83,7 @@ public class JibContainerBuilder {
       ContainerConfiguration.builder();
   private final BuildContext.Builder buildContextBuilder;
 
+  private boolean enablePlatfortag;
   private ImageConfiguration baseImageConfiguration;
   // TODO(chanseok): remove and use containerBuildPlanBuilder instead.
   private List<FileEntriesLayer> layerConfigurations = new ArrayList<>();
@@ -347,6 +348,10 @@ public class JibContainerBuilder {
   public JibContainerBuilder setEnvironment(Map<String, String> environmentMap) {
     containerBuildPlanBuilder.setEnvironment(environmentMap);
     containerConfigurationBuilder.setEnvironment(environmentMap);
+    return this;
+  }
+  public JibContainerBuilder setEnablePlatformTag(boolean enablePlatformTag) {
+    this.enablePlatfortag = enablePlatformTag;
     return this;
   }
 
@@ -708,6 +713,7 @@ public class JibContainerBuilder {
     buildContextBuilder
         .setTargetFormat(buildPlan.getFormat())
         .setBaseImageConfiguration(baseImageConfiguration)
+        .setEnablePlatformTags(this.enablePlatfortag)
         .setLayerConfigurations(layerConfigurations);
     return this;
   }
