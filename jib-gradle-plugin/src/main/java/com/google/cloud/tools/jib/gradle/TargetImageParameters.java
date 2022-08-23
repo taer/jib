@@ -39,6 +39,7 @@ public class TargetImageParameters {
   private final Property<String> image;
   private final SetProperty<String> tags;
   private final CredHelperParameters credHelper;
+  private final Property<Boolean> enablePlatformTag;
 
   @Inject
   public TargetImageParameters(ObjectFactory objectFactory) {
@@ -47,6 +48,8 @@ public class TargetImageParameters {
     tags = objectFactory.setProperty(String.class).empty();
     credHelper =
         objectFactory.newInstance(CredHelperParameters.class, PropertyNames.TO_CRED_HELPER);
+    enablePlatformTag = objectFactory.property(Boolean.class);
+
   }
 
   @Input
@@ -122,5 +125,23 @@ public class TargetImageParameters {
 
   public void auth(Action<? super AuthParameters> action) {
     action.execute(auth);
+  }
+
+  @Input
+  @Nullable
+  @Optional
+  public Boolean isEnablePlatformTag() {
+    if (System.getProperty(PropertyNames.TO_ENABLETAG) != null) {
+      return Boolean.getBoolean(PropertyNames.TO_ENABLETAG);
+    }
+    return enablePlatformTag.getOrNull();
+  }
+
+  public void setEnablePlatformTag(Boolean enablePlatformTag) {
+    this.enablePlatformTag.set(enablePlatformTag);
+  }
+
+  public void setEnablePlatformTag(Provider<Boolean> enablePlatformTag) {
+    this.enablePlatformTag.set(enablePlatformTag);
   }
 }
